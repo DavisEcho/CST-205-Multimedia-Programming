@@ -1,0 +1,30 @@
+<file_created time="Sun Nov 06 18:27:50 PST 2016">
+<Could not find D:\Python Projects\CST 205\Lab_6.pylog, creating a new logfile>
+<command_run time="Sun Nov 06 19:25:07 PST 2016">217/159></command_run>
+<command_run time="Sun Nov 06 19:25:21 PST 2016">217/float(159)></command_run>
+<menu_button time="Sun Nov 06 19:45:59 PST 2016">Undo</menu_button>
+<menu_button time="Sun Nov 06 19:46:00 PST 2016">Undo</menu_button>
+<menu_button time="Sun Nov 06 19:46:02 PST 2016">Undo</menu_button>
+<command_run time="Sun Nov 06 19:48:00 PST 2016">aritfy(makePicture(pickAFile())></command_run>
+<menu_button time="Sun Nov 06 19:48:02 PST 2016">Load Program</menu_button>
+<file_saved time="Sun Nov 06 19:48:10 PST 2016">D:\Python Projects\CST 205\Lab_6.py</file_saved>
+</file_created>
+<menu_button time="Sun Nov 06 19:48:24 PST 2016">Load Program</menu_button>
+<file_saved time="Sun Nov 06 19:48:26 PST 2016">D:\Python Projects\CST 205\Lab_6.py</file_saved>
+</file_created>
+<command_run time="Sun Nov 06 19:48:30 PST 2016">aritfy(makePicture(pickAFile())></command_run>
+<menu_button time="Sun Nov 06 19:48:35 PST 2016">Load Program</menu_button>
+<command_run time="Sun Nov 06 19:49:26 PST 2016">pic = makePicture(pickAFile())></command_run>
+<command_run time="Sun Nov 06 19:49:48 PST 2016">artify(pic)></command_run>
+<menu_button time="Sun Nov 06 19:54:54 PST 2016">Load Program</menu_button>
+<file_saved time="Sun Nov 06 19:54:55 PST 2016">D:\Python Projects\CST 205\Lab_6.py</file_saved>
+</file_created>
+<command_run time="Sun Nov 06 19:56:12 PST 2016">foreground = makePicture(pickAFile())></command_run>
+<command_run time="Sun Nov 06 19:57:24 PST 2016">background = makePicture(pickAFile())></command_run>
+<command_run time="Sun Nov 06 19:58:00 PST 2016">explore(foreground)></command_run>
+<command_run time="Sun Nov 06 19:59:01 PST 2016">chromakey(foreground, background, 1, 1, 30)></command_run>
+<command_run time="Sun Nov 06 19:59:50 PST 2016">foreground = makePicture(pickAFile())></command_run>
+<command_run time="Sun Nov 06 20:00:00 PST 2016">chromakey(foreground, background, 1, 1, 90)></command_run>
+<menu_button time="Sun Nov 06 20:03:01 PST 2016">Load Program</menu_button>
+<file_saved time="Sun Nov 06 20:03:03 PST 2016">D:\Python Projects\CST 205\Lab_6.py</file_saved>
+</file_created>
