@@ -5,36 +5,125 @@
 
 #----- Warm up -----
 
-def removeRedEye():
-# Removes red eye error from a specific image downloaded from google images
-
-
+def removeRedEye(pic):
+  for x in range(0, getWidth(pic)):
+    for y in range(0, getHeight(pic)):
+      px = getPixel(pic, x, y)
+      r = getRed(px)
+      b = getBlue(px)
+      g = getGreen(px)
+      if r >= (b + g) * 0.70:
+        avg = (b + g) / 2
+        setRed(px, avg)
+  repaint(pic)
+  
 #----- Problem 1 -----
 
-def makeSepia(picIn):
-# Creates a sepia tone image
+def makeSepia(pic):
+  pic = betterBnW(pic)
+  pixels = getPixels(pic)
+  for px in pixels:
+    r = getRed(px)
+    if r < 63:
+      setRed(px, r * 1.1)
+      setBlue(px, getBlue(px) * 0.9)
+    elif r < 192:
+      setRed(px, r * 1.15)
+      setBlue(px, getBlue(px) * 0.85)
+    else:
+      if r * 1.08 > 255:
+        setRed(px, 255)
+        setBlue(px, getBlue(px) * 0.93)
+      else:
+        setRed(px, r * 1.08)
+        setBlue(px, getBlue(px) * 0.93)
+  repaint(pic)
+  return pic
+
 
 
 #----- Problem 2 -----
 
 def artify(picIn):
 # Modifies an image (picIn) and makes it "artsy"
+  for x in range (0, getWidth(picIn)):
+    for y in range (0, getHeight(picIn) - 1):
+      pixel = getPixel(picIn, x, y)
+      redLevel = getRed(pixel)
+      greenLevel = getGreen(pixel)
+      blueLevel = getBlue(pixel)
+      
+      if redLevel < 64:
+        setRed(pixel, 31)
+      if redLevel > 63 and redLevel < 128:
+        setRed(pixel, 95)
+      if redLevel > 127 and redLevel < 192:
+        setRed(pixel, 159)
+      if redLevel > 191 and redLevel < 256:
+        setRed(pixel, 223)
+      
+      if greenLevel < 64:
+        setGreen(pixel, 31)
+      if greenLevel > 63 and greenLevel < 128:
+        setGreen(pixel, 95)
+      if greenLevel > 127 and greenLevel < 192:
+        setGreen(pixel, 159)
+      if greenLevel > 191 and greenLevel < 256:
+        setGreen(pixel, 223)
 
+      if blueLevel < 64:
+        setBlue(pixel, 31)
+      if blueLevel > 63 and blueLevel < 128:
+        setBlue(pixel, 95)
+      if blueLevel > 127 and blueLevel < 192:
+        setBlue(pixel, 159)
+      if blueLevel > 191 and blueLevel < 256:
+        setBlue(pixel, 223)    
+  repaint(picIn)
+  return picIn
 
 #----- Problem 3 -----
 
 def chromakey(foreground, background, sampleX, sampleY, tolerance):
 # Replaces pixels with color value within tolerance range of color at sampleX sampleY coordinates
 # in forground image with pixels from background image
+  samplePixel = getPixel(foreground, sampleX, sampleY) 
+  sampleColor = getColor(samplePixel)
+  
+  # match width dimensions of both images
+  if getWidth(foreground) > getWidth(background):
+    foreground = shrinkToSize(foreground, getWidth(background))
+  elif getWidth(foreground) < getWidth(background):
+    background = shrinkToSize(background, getWidth(foreground))  
 
+  for x in range (0, getWidth(foreground)):
+    for y in range (0, getHeight(foreground)):
+      forePixel = getPixel(foreground, x, y)
+      foreColor = getColor(forePixel)
+      backPixel = getPixel(background, x, y)
+      backColor = getColor(backPixel)
+      if distance(sampleColor, foreColor) < tolerance:
+        setColor(forePixel, backColor)
 
+  repaint(foreground)
+  writePictureTo(foreground, "C://Users//Desktop//Google Drive//CS Classes//CST 205 Multimedia Programming//Module 2//LAB6//chromakeyOutput.jpg")
+  return foreground
 
-
-
-
-
-
-
+def chromakeyTest():
+  # Tests chromakey function with known parameters
+  # Foreground should be the green screen picture
+  foreground = makePicture(pickAFile())
+  # Background should be your scene
+  background = makePicture(pickAFile())
+  # Provide pixel x and y coordinates for a point on foreground where the pixel is green
+  x = 1
+  y = 1
+  
+  # Select a tolerance for green pixel elimination (tolerance represents distance)
+  tolerance = 100
+  
+  chromakey(foreground, background, x, y, tolerance)
+  
 #----- Useful non-homework assignment functions -----
 
 def shrinkToSize(sourcePicture, newWidth = None, newHeight = None):
@@ -58,7 +147,7 @@ def shrinkToSize(sourcePicture, newWidth = None, newHeight = None):
     newHeight = sourceHeight * (newWidth / float(sourceWidth))
     newHeight = int(newHeight) + 1
     
-  if newWidth == None and newWidth == None:
+  if newWidth == None and newHeight == None:
     return sourcePicture
         
   widthRatio = sourceWidth / newWidth
@@ -77,13 +166,16 @@ def shrinkToSize(sourcePicture, newWidth = None, newHeight = None):
   return targetPicture
 
 
-def betterBnW(picIn):
-# Converts an image to grayscale using weighted average luminance  
-# Imported from previous lab:
-  pixels = getPixels(picIn)
+def betterBnW(pic):
+  pixels = getPixels(pic)
   for p in pixels:
-    luminance = (float(getRed(p)) * 0.299) + (float(getGreen(p)) * 0.587) + \
-                (float(getBlue(p)) * 0.114)
-    shadeOfGrey = makeColor(luminance, luminance, luminance)
-    setColor(p, shadeOfGrey)
-  return picIn
+    r = getRed(p) * 0.299
+    g = getGreen(p) * 0.587
+    b = getBlue(p) * 0.114
+    luminance = r + g + b
+    setRed(p, luminance)
+    setGreen(p, luminance)
+    setBlue(p, luminance)
+  repaint(pic)
+  return pic
+
