@@ -2,6 +2,16 @@
 # CSUMB CST 205 Multimedia programming module 2
 # Lab # 10: Manipulating Strings and Hangman
 
+# ----- Warm Up -----
+
+def warmUp():
+  input = ""
+  while not input == "stop":
+    input = requestString("Enter a word. Type \"stop\" to exit the program.")
+    printNow(input)
+
+# ----- Hangman -----
+
 def main():
 # Main game loop. Runs until the quit boolean is made true.
   
