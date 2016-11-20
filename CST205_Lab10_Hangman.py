@@ -125,6 +125,10 @@ def validateInput(guess, incorrectGuesses):
   if len(guess) == 0:
     print("Please enter a letter.")
     valid = false
+    
+  if len(guess) > 1:
+    print("Please enter only one letter at a time.")
+    valid = false
       
   return valid
   
