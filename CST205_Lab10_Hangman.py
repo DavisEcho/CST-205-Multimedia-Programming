@@ -12,12 +12,16 @@ def warmUp():
 
 # ----- Hangman -----
 
+import random
+
 def main():
+  random.seed()
+  
 # Main game loop. Runs until the quit boolean is made true.
   
   # Variables:
   quit = false
-  wordLength = 6
+  wordLength = 7
   guesses = 6
   round = 1
   answer = pickWord(wordLength)
@@ -72,8 +76,41 @@ def main():
 def pickWord(wordLength):
 # This function selects a game word from a list and returns
 # a word of requested length
+  wordList = None
+  
+  #Set word variable to a string to override word selection process
+  word = None
+  wordList = None
 
-  return "answer space"
+  sevenLetterWords = [ "zombies", \
+                       "zooming", \
+                       "pickups", \
+                       "perplex", \
+                       "cutback" ]
+  
+  sixLetterWords = [ "puzzle", \
+                     "jumped", \
+                     "jumble", \
+                     "mixing", \
+                     "frozen" ]
+                     
+  fiveLetterWords = [ "crazy", \
+                      "jazzy", \
+                      "jacks", \
+                      "quack", \
+                      "jammy" ]
+                      
+  if wordLength == 7:
+    wordList = sevenLetterWords
+  elif wordLength == 6:
+    wordList = sixLetterWords
+  elif wordLength == 5:
+    wordList = fiveLetterWords
+    
+  if wordList != None and word == None:
+    word = wordList[random.randrange(len(wordList))]
+
+  return word
   
   
 def makeMask(wordLength, answer):
