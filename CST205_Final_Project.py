@@ -4,9 +4,10 @@
 
 # ----- Audio Generation -----
 
+def generateAudio(someFile):
 
 
-
+    return generatedAudio
 
 
 
