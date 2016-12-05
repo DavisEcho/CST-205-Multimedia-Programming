@@ -21,10 +21,11 @@ def main():
   
   # Variables:
   quit = false
-  wordLength = 7
+  wordLength = 7 #Choose between 5 and 7
   guesses = 6
   round = 1
-  answer = pickWord(wordLength)
+  answer = pickWord(wordLength) # Also can set this to string for manual word selection
+  #answer = "your own word"
   mask = makeMask(len(answer), answer)
   correct = false
   welcomeMessage = """Welcome to hangman, the exciting game of letter guessing. You have six chances to guess the 
